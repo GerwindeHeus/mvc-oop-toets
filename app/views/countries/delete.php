@@ -1,0 +1,4 @@
+<?= $data['deleteStatus'] ?>
+<?php
+    
+?>
