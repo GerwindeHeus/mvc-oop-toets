@@ -1,51 +1,44 @@
 <?php
-class Richestpeoples extends Controller {
+class RichestPeople extends Controller {
+  // Properties, field
+  private $richestPersonModel;
 
+  // Dit is de constructor
   public function __construct() {
-    $this->richestpeopleModel = $this->model('Richestpeople');
+    $this->richestPersonModel = $this->model('RichestPerson');
   }
 
   public function index() {
-    /**
-     * Haal via de method getFruits() uit de model Fruit de records op
-     * uit de database
-     */
-    $richestpeoples = $this->richestpeopleModel->getRichestpeoples();
+    $richestPeople = $this->richestPersonModel->getRichestPeople();
 
-    /**
-     * Maak de inhoud voor de tbody in de view
-     */
     $rows = '';
-    foreach ($countries as $value){
+    foreach ($richestPeople as $value){
       $rows .= "<tr>
-                  <td>$value->id</td>
-                  <td>" . htmlentities($value->name, ENT_QUOTES, 'ISO-8859-1') . "</td>
-                  <td>" . htmlentities($value->capitalCity, ENT_QUOTES, 'ISO-8859-1') . "</td>
-                  <td>" . htmlentities($value->continent, ENT_QUOTES, 'ISO-8859-1') . "</td>
-                  <td>" . number_format($value->population, 0, ',', '.') . "</td>
-                  <td><a href='" . URLROOT . "/richestpeoples/delete/$value->id'>delete<a></td>
+                  <td>$value->Id</td>
+                  <td>$value->Name</td>
+                  <td>$value->Networth</td>
+                  <td>$value->MyAge</td>
+                  <td>$value->Company</td>
+                  <td><a href='" . URLROOT . "/richestpeople/delete/$value->Id'>delete</a></td>
                 </tr>";
     }
 
 
     $data = [
-      'title' => '<h1>Richestpeoples</h1>',
-      'countries' => $rows
+      'title' => '<h1>De vijf rijkste mensen ter wereld</h1>',
+      'richestpeople' => $rows
     ];
-    $this->view('richestpeoples/index', $data);
+    $this->view('richestpeople/index', $data);
   }
 
-  
-
-  public function delete($id){
-
-    $this->richestpeopleModel->deleteCountry($id);
+  public function delete($Id) {
+    $this->richestPersonModel->deleteRichestPerson($Id);
 
     $data =[
-      'deleteStatus' => "Het record meet id = $id is verwijdert"
+      'deleteStatus' => "Het record met id = $Id is verwijdert"
     ];
-    $this->view("richestpeoples/delete", $data);
-    header("Refresh:2; url=" . URLROOT . "/richestpeoples/index");
+    $this->view("richestpeople/delete", $data);
+    header("Refresh:3; url=" . URLROOT . "/richestpeople/index");
   }
 }
 

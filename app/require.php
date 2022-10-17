@@ -5,6 +5,5 @@
   require_once 'libraries/Database.php';
   require_once 'config/config.php';
 
-
   // Maak een instantie van de Core class
   $init = new Core();

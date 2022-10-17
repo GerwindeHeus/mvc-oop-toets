@@ -2,6 +2,9 @@
 // Dit wordt de parentclass van alle andere controller
 // We loaden de model en de view
 class Controller {
+  // Geen properties
+  
+
   public function model($model) {
     require_once('../app/models/' . $model . '.php');
     return new $model();

@@ -50,7 +50,7 @@ class Core {
 
       $url = filter_var($url, FILTER_SANITIZE_URL);
       
-      $url = explode('/', $url);      
+      $url = explode('/', $url);     
       return $url;
     } else {      
       return array('homepages', 'index');

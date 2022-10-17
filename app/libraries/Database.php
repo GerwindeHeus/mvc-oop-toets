@@ -62,7 +62,7 @@
     }
 
     public function rowCount() {
-      $this->statement->rowCount();
+      return $this->statement->rowCount();
     }
   }
 ?>
